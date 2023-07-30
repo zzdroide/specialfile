@@ -28,7 +28,7 @@ static int diskfile_opt_proc(void *data, const char *arg, int key,
     // Check if a dest name is duplicated?
     size_t size = strlen(arg) + 1;
     char *argmut = malloc(size);
-    strncpy(argmut, arg, size);
+    memcpy(argmut, arg, size);
 		char *base = basename(argmut);
 
 		entry->dest = malloc(size + 1);
