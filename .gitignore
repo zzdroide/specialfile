@@ -1,4 +1,4 @@
 /build
 *.xcworkspace
 xcuserdata
-/diskfile
+/specialfile

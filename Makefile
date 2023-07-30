@@ -19,9 +19,9 @@ endif
 all: diskfile
 
 diskfile: $(SOURCES)
-	$(CC) $(OPT) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LIBS)
+	$(CC) $(OPT) $(CFLAGS) $(LDFLAGS) -o specialfile $^ $(LIBS)
 
 clean:
-	rm -f diskfile
+	rm -f specialfile
 
 .PHONY: clean all
