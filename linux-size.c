@@ -7,7 +7,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-off_t diskfile_device_size(const char *path) {	
+off_t diskfile_device_size(const char *path) {
     unsigned long long size;
     int fd = open(path, O_RDONLY);
 		if (fd == -1)
