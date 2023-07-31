@@ -18,13 +18,14 @@ time_t diskfile_time;
 
 static off_t
 diskfile_source_size(const char *path) {
-	// Regular files are easy
 	struct stat st;
 	int err = lstat(path, &st);
-	if (err == 0 && S_ISREG(st.st_mode)) {
+	if (err != 0 || S_ISFIFO(st.st_mode)) {
+		return 0;
+	}
+	if (S_ISREG(st.st_mode)) {
 		return st.st_size;
 	}
-
 	return diskfile_device_size(path);
 }
 
