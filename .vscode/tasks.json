@@ -1,0 +1,24 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "(debug) Build",
+      "type": "shell",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "command": "/usr/bin/gcc",
+      "args": [
+        "-g", "-Og",
+        "-std=gnu99", "-Wall", "-D_FILE_OFFSET_BITS=64", "-DFUSE_USE_VERSION=26",
+        "-o", "specialfile",
+        "diskfile.c", "main.c", "linux-size.c", "-lfuse",
+      ],
+      "problemMatcher": ["$gcc"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+    }
+  ]
+}

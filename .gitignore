@@ -2,3 +2,5 @@
 *.xcworkspace
 xcuserdata
 /specialfile
+
+/.vscode/launch.json
