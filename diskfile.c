@@ -79,7 +79,7 @@ diskfile_open(const char *path, struct fuse_file_info *fi) {
 
 			fi->fh = open(entry->source, O_RDONLY);
 			if (fi->fh == -1)
-				return -1;
+				return -errno;
 			return 0;
 		}
 	}
@@ -88,14 +88,15 @@ diskfile_open(const char *path, struct fuse_file_info *fi) {
 
 static int
 diskfile_release(const char *path, struct fuse_file_info *fi) {
-	close(fi->fh);
-	return 0;
+	int err = close(fi->fh);
+	return (err == 0) ? 0 : -errno;
 }
 
 static int
 diskfile_read(const char *path, char *buf, size_t size, off_t offset,
               struct fuse_file_info *fi) {
-	return pread(fi->fh, buf, size, offset);
+	int r = pread(fi->fh, buf, size, offset);
+	return (r >= 0) ? r : -errno;
 }
 
 struct fuse_operations diskfile_operations = {
