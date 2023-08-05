@@ -6,8 +6,24 @@
       "type": "cppdbg",
       "request": "launch",
       "cwd": "${workspaceFolder}",
-      "program": "./specialfile",
-      "args": ["-f", "/dev/dm-1", "p", "mnt"],
+      "program": "/bin/sh",
+      "args": [
+        "-c",
+/*
+# Setup:
+
+sudo lvcreate -L 4M -n tmp vg   # A small temporary block device
+ls -l /dev/vg/tmp               # It's a symlink to /dev/dm-1
+sudo chown $USER /dev/dm-1      # Read/write as non-root
+echo example >/dev/dm-1         # So it's not all zeros
+
+mkfifo p
+
+sudo mkdir /mnt/specialfile
+sudo chown $USER:$USER /mnt/specialfile
+*/
+        "sudo umount -fv /mnt/specialfile; exec ./specialfile -f /dev/dm-1 p /mnt/specialfile",
+      ],
       "stopAtEntry": false,
       "environment": [],
       "externalConsole": false,

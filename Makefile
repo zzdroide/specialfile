@@ -1,4 +1,4 @@
-CFLAGS += -std=gnu99 -Wall -D_FILE_OFFSET_BITS=64 -DFUSE_USE_VERSION=26
+CFLAGS += -std=gnu99 -Wall -D_FILE_OFFSET_BITS=64 -DFUSE_USE_VERSION=28
 OPT = -O2
 SOURCES = diskfile.c main.c
 
@@ -16,12 +16,15 @@ else
 	SOURCES += linux-size.c
 endif
 
-all: diskfile
+all: specialfile
 
-diskfile: $(SOURCES)
-	$(CC) $(OPT) $(CFLAGS) $(LDFLAGS) -o specialfile $^ $(LIBS)
+debug: CFLAGS += -DDEBUG
+debug: specialfile
+
+specialfile: $(SOURCES)
+	$(CC) $(OPT) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LIBS)
 
 clean:
 	rm -f specialfile
 
-.PHONY: clean all
+.PHONY: all debug clean

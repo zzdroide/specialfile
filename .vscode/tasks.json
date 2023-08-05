@@ -10,7 +10,7 @@
       "command": "/usr/bin/gcc",
       "args": [
         "-g", "-Og",
-        "-std=gnu99", "-Wall", "-D_FILE_OFFSET_BITS=64", "-DFUSE_USE_VERSION=26",
+        "-std=gnu99", "-Wall", "-D_FILE_OFFSET_BITS=64", "-DFUSE_USE_VERSION=28", "-DDEBUG",
         "-o", "specialfile",
         "diskfile.c", "main.c", "linux-size.c", "-lfuse",
       ],

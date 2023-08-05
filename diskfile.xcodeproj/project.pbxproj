@@ -158,7 +158,7 @@
 				OTHER_CFLAGS = (
 					"-D_FILE_OFFSET_BITS=64",
 					"-D_DARWIN_USE_64_BIT_INODE",
-					"-DFUSE_USE_VERSION=26",
+					"-DFUSE_USE_VERSION=28",
 				);
 				OTHER_LDFLAGS = "-losxfuse";
 				PRODUCT_NAME = diskfile;
@@ -173,7 +173,7 @@
 				OTHER_CFLAGS = (
 					"-D_FILE_OFFSET_BITS=64",
 					"-D_DARWIN_USE_64_BIT_INODE",
-					"-DFUSE_USE_VERSION=26",
+					"-DFUSE_USE_VERSION=28",
 				);
 				OTHER_LDFLAGS = "-losxfuse";
 				PRODUCT_NAME = diskfile;
