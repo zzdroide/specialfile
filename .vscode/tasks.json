@@ -2,7 +2,20 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "Dummy gitrev.c",
+      "type": "process",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "command": "/bin/sh",
+      "args": [
+        "-c",
+        "echo 'const char *const git_commit = \"<debug>\";' >gitrev.c"
+      ],
+    },
+    {
       "label": "(debug) Build",
+      "dependsOn": "Dummy gitrev.c",
       "type": "shell",
       "options": {
         "cwd": "${workspaceFolder}"
@@ -12,7 +25,7 @@
         "-g", "-Og",
         "-std=gnu99", "-Wall", "-D_FILE_OFFSET_BITS=64", "-DFUSE_USE_VERSION=28", "-DDEBUG",
         "-o", "specialfile",
-        "diskfile.c", "main.c", "linux-size.c", "-lfuse",
+        "diskfile.c", "main.c", "gitrev.c", "linux-size.c", "-lfuse",
       ],
       "problemMatcher": ["$gcc"],
       "group": {

@@ -1,6 +1,6 @@
 CFLAGS += -std=gnu99 -Wall -D_FILE_OFFSET_BITS=64 -DFUSE_USE_VERSION=28
 OPT = -O2
-SOURCES = diskfile.c main.c
+SOURCES = diskfile.c main.c gitrev.c
 
 UNAME = $(shell uname)
 ifeq ($(UNAME),Darwin)
@@ -24,7 +24,14 @@ debug: specialfile
 specialfile: $(SOURCES)
 	$(CC) $(OPT) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LIBS)
 
-clean:
-	rm -f specialfile
+gitrev.c:
+# As https://github.com/archiecobbs/s3backer/blob/master/Makefile.am does
+	printf 'const char *const git_commit = "%s";\n' "`git describe --match=NeVeRmAtCh --always --dirty`" >gitrev.c
 
-.PHONY: all debug clean
+clean:
+	rm -f specialfile gitrev.c
+
+install:
+	install specialfile /usr/local/bin/
+
+.PHONY: all debug clean install

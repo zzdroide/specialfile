@@ -6,9 +6,21 @@
 #include <string.h>
 #include <libgen.h>
 
+// gitrev.c
+extern const char *const git_commit;
+
 static void usage(struct fuse_args *args) {
-	fprintf(stderr, "Create a regular file with the contents of a device\n\n"
-					"Usage: %s [options] DEVICE1 [DEVICE2 ...] MOUNTPOINT\n\n", args->argv[0]);
+	fprintf(stderr,
+		"Create a regular file with the contents of a device"
+		"\n"
+		"\nUsage: %s [options] DEVICE1 [DEVICE2 ...] MOUNTPOINT"
+		"\n"
+		"\nCommit %s"
+		"\n"
+		"\n",
+		args->argv[0],
+		git_commit
+	);
 	fuse_main(args->argc, args->argv, NULL, NULL);
 	exit(-1);
 }

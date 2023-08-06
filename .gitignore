@@ -1,6 +1,8 @@
-/build
-*.xcworkspace
-xcuserdata
+/gitrev.c
 /specialfile
 
 /.vscode/launch.json
+
+/build
+*.xcworkspace
+xcuserdata
